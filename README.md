@@ -15,12 +15,12 @@ The current release supports:
 
 
 ## News
-- [2024/5] 🌟 Our SliM-LLM paper and code are open now
+- [2024/5] 🌟 Our SliM-LLM paper and code are open now! (We are still uploading and improving our code and huggingface repository, please be patient.)
 
 
 ## Contents
 - [Install](#install)
-- [SliM-LLM Mixed-precision Zoo](#SliM-LLM Mixed-Precision Zoo)
+- [SliM-LLM Mixed-precision Zoo](#SliM-LLM-Mixed-Precision-Zoo)
 - [Usage](#usage)
 - [Results](#results)
 - [Citation](#citation)
