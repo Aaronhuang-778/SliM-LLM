@@ -217,8 +217,8 @@ def quant_sequential(model, dataloader, dev, saved_block_precision):
     return quantizers
 
 def pack_model(model, save_path, bits, group_size, quantizers, block_bits):
-    # import sys
-    # sys.path.append('/home/hw/SliM-LLM/AutoGPTQ')
+    import sys, os
+    sys.path.append(os.path.join(os.getcwd(), '../AutoGPTQ'))
     # print(sys.path)
     from auto_gptq import LlamaGPTQForCausalLM, OPTGPTQForCausalLM, BaseQuantizeConfig
     quantize_config = BaseQuantizeConfig(
@@ -229,14 +229,18 @@ def pack_model(model, save_path, bits, group_size, quantizers, block_bits):
     scales={k : quantizers[k][0] for k in quantizers}
     zeros={k : quantizers[k][1] for k in quantizers}
     g_idxes={k : quantizers[k][2] for k in quantizers}
+    modified_block_bits = {}
+    for k in block_bits:
+        for name in block_bits[k]:
+            modified_block_bits['model.layers.%d.%s' % (k, name)] = torch.Tensor(block_bits[k][name]).int()
 
     if "llama" in args.model:
         model = LlamaGPTQForCausalLM(model, quantized=False, quantize_config=quantize_config)
-        model.quantize(None, scales, zeros, g_idxes, block_bits)
+        model.quantize([], scales, zeros, g_idxes, modified_block_bits)
         model.save_quantized(save_path, use_safetensors=False)
     elif "opt" in args.model:
         model = OPTGPTQForCausalLM(model, quantized=False, quantize_config=quantize_config)
-        model.quantize(None, scales, zeros, g_idxes, block_bits)
+        model.quantize([], scales, zeros, g_idxes, modified_block_bits)
         model.save_quantized(save_path, use_safetensors=False)
 
 if __name__ == "__main__":
