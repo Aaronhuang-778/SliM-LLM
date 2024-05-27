@@ -107,11 +107,11 @@ python run.py \
 ![WX20240527-173442@2x](imgs/WX20240527-173442@2x.png)
 
 ```
-#First export the autogptq with mixed-precision version into python environment
+# First export the autogptq with mixed-precision version into python environment
 bash:
-export $PYTHONPATH=$PYTHONPATH:/path/to/AutoGPTQ
+export PYTHONPATH=$PYTHONPATH:/path/to/AutoGPTQ
 
-#Then run the SliM-LLM script for LLaMA-13B
+# Then run the SliM-LLM script for LLaMA-13B
 
 python run.py \
  huggyllama/llama-13b wikitext2 2bit --groupsize 128 \
