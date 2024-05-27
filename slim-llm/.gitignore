@@ -1,0 +1,11 @@
+exp_out/
+exp_plot/
+exp_plot_RTN/
+__pycache__/
+cache/
+plt_block_error/
+block_precision_mse/
+block_precision_kl_mse/
+block_precision_kl_ssim/
+block_precision_mse_ssim/
+output/
