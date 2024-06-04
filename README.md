@@ -32,7 +32,7 @@ conda activate slimllm
 git clone https://github.com/Aaronhuang-778/SliM-LLM
 cd SliM-LLM
 pip install --upgrade pip 
-pip install -r requirement.txt
+pip install -r requirements.txt
 ```
 
 We also provide the fixed-AutoGPTQ which supports mixed-precision packing and computing in `./AutoGPTQ`. Please download the needed package if using real quantization:
